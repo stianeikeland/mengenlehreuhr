@@ -42,11 +42,9 @@
     (draw-lamp-sequence (nth time 3) 280 41 36)
     (draw-lamp-sequence (nth time 4) 360 115 100)))
 
-(defn -main
-  [& arg-list]
+(defn -main [& arg-list]
   (sketch
   	:title "Mengenlehreuhr"
   	:setup setup
   	:draw draw
-  	:size [640 480])
-  )
+  	:size [640 480]))
