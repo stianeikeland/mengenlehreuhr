@@ -28,7 +28,7 @@
 (defn lampcolor-4 [count color]
   (loop [x count acc []]
     (if (> x 0)
-    	(recur (dec x) (conj acc (make-lamp color :on)))
+      (recur (dec x) (conj acc (make-lamp color :on)))
      	(concat acc (take (- 4 count) (repeat (make-lamp color :off)))))))
 
 (defn lampcolor-hours [count]
@@ -38,13 +38,14 @@
   (lampcolor-4 count :yellow))
 
 (defn lampcolor-minutes-5-state [count]
+
   (loop [x count acc []]
     (if (> x 0)
     	(recur (dec x) (conj acc :on))
      	(concat acc (take (- 11 count) (repeat :off))))))
 
 (defn lampcolor-minutes-5 [count]
-  (map #(make-lamp %1 %2)
+  (map make-lamp
        lamp-minute-pattern
        (lampcolor-minutes-5-state count)))
 
