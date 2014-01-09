@@ -7,17 +7,17 @@
 (defn get-seconds [time]
   (rem (+ (clj-time/second time) 1) 2))
 
-(defn get-hours-5 [time]
-  (quot (clj-time/hour time) 5))
+; Every program needs a macro...
+(defmacro def-timepart-extractors [partname partfunction]
+  (let [make-name #(symbol (str "get-" (str partname) "-" (str %1)))]
+    `(do
+       (defn ~(make-name 5) [time#] 
+         (quot (~partfunction time#) 5))
+       (defn ~(make-name 1) [time#] 
+         (rem  (~partfunction time#) 5)))))
 
-(defn get-hours-1 [time]
-  (rem (clj-time/hour time) 5))
-
-(defn get-minutes-5 [time]
-  (quot (clj-time/minute time) 5))
-
-(defn get-minutes-1 [time]
-  (rem (clj-time/minute time) 5))
+(def-timepart-extractors hours clj-time/hour)
+(def-timepart-extractors minutes clj-time/minute)
 
 (defn lampcolor-second [count]
   (if (zero? count) [:yellow/off] [:yellow/on]))
