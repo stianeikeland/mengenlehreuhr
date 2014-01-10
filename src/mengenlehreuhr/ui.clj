@@ -22,14 +22,9 @@
   (rect x y width 60))
 
 (defn draw-lamp-sequence [lamps y-offset lamp-offset width]
-  (loop [lamps lamps
-         x (iterate (partial + lamp-offset) 100)]
-    (draw-square-lamp
-      (first lamps)
-      (first x)
-      y-offset width)
-    (if (not-empty (rest lamps))
-      (recur (rest lamps) (rest x)))))
+  (let [x-offsets (iterate (partial + lamp-offset) 100)]
+    (doseq [[lamp x-offset] (map list lamps x-offsets)]
+      (draw-square-lamp lamp x-offset y-offset width))))
 
 (defn draw []
   (stroke 0)
