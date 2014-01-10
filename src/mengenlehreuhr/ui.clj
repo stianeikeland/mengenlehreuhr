@@ -43,5 +43,3 @@
   	:setup setup
   	:draw draw
   	:size [640 480]))
-
-(-main)
