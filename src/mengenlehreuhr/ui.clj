@@ -15,7 +15,7 @@
 
 (defn draw-seconds [time]
   (apply fill (colors (first (first time))))
-  (ellipse 322 60 90 90))
+  (ellipse 322 70 100 100))
 
 (defn draw-square-lamp [color x y width]
   (apply fill (colors color))
@@ -28,13 +28,13 @@
 
 (defn draw []
   (stroke 0)
-  (stroke-weight 2)
+  (stroke-weight 1)
 
   (let [time (lamp (clj-time/local-now))]
     (draw-seconds time)
-    (draw-lamp-sequence (nth time 1) 120 115 100)
-    (draw-lamp-sequence (nth time 2) 200 115 100)
-    (draw-lamp-sequence (nth time 3) 280 41 36)
+    (draw-lamp-sequence (nth time 1) 135 115 100)
+    (draw-lamp-sequence (nth time 2) 210 115 100)
+    (draw-lamp-sequence (nth time 3) 285 41 36)
     (draw-lamp-sequence (nth time 4) 360 115 100)))
 
 (defn -main [& arg-list]
@@ -43,3 +43,5 @@
   	:setup setup
   	:draw draw
   	:size [640 480]))
+
+(-main)
