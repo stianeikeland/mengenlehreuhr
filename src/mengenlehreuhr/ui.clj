@@ -13,8 +13,8 @@
   (frame-rate 10)
   (background 160))
 
-(defn draw-seconds [time]
-  (apply fill (colors (first (first time))))
+(defn draw-lamp-seconds [lamp]
+  (apply fill (colors (first lamp)))
   (ellipse 322 70 100 100))
 
 (defn draw-square-lamp [color x y width]
@@ -31,7 +31,7 @@
   (stroke-weight 1)
 
   (let [time (lamp (clj-time/local-now))]
-    (draw-seconds time)
+    (draw-lamp-seconds (nth time 0))
     (draw-lamp-sequence (nth time 1) 135 115 100)
     (draw-lamp-sequence (nth time 2) 210 115 100)
     (draw-lamp-sequence (nth time 3) 285 41 36)
